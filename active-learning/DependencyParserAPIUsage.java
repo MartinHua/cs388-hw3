@@ -12,10 +12,17 @@ import java.util.List;
  */
 public class DependencyParserAPIUsage {
     public static void main(String[] args) {
+        //  Training type
+        // String type = args[0]
         //  Training Data path
-        String trainPath = "/projects/nlp/penn-dependencybank/brown-conllx/cf/cf01.conllx";
+        String trainPath = "./train.conllx";
+        // String trainPath = args[1];
+        //  unlabeled Data Path
+        String unlabeledPath = "./unlabeled.conllx";
+        // String unlabeledPath = args[2];
         // Test Data Path
-        String testPath = "/projects/nlp/penn-dependencybank/brown-conllx/cr/cr01.conllx";
+        String testPath = "./test.conllx";
+        // String testPath = args[3];
         // Path to embedding vectors file
         String embeddingPath = "/projects/nlp/penn-dependencybank/en-cw.txt";
         // Path where model is to be saved
