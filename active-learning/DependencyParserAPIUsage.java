@@ -79,7 +79,7 @@ public class DependencyParserAPIUsage {
         // Path where test data annotations are stored
         String testAnnotationsPath = "outputs/test_annotation.conllx";
 
-        List<DependencyTree> predictedParses;
+        List<DependencyTree> predictedParses = new ArrayList<>();
 
         // generate sets
         update(trainPath, unlabeledPath, outputTrainPath, outputUnlabeledPath, "generate", predictedParses);
