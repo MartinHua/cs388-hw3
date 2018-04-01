@@ -59,12 +59,7 @@ public class DependencyParserAPIUsage {
         Util.writeConllFile(outputUnlabeledPath, unlabeledSents, unlabeledTrees);
     }
     public static void main(String[] args) throws IOExcepion {
-        try {
-            PrintWriter writer = new PrintWriter("logFile.txt", "UTF-8");
-        } catch (IOExcepion e) {
-            //TODO: handle exception
-        }
-        
+        PrintWriter writer = new PrintWriter("logFile.txt", "UTF-8");        
 
         //  Training type
         String type = args[0];
