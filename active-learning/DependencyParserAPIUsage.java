@@ -14,7 +14,32 @@ import java.io.IOException;
  * Created by abhisheksinha on 3/20/17.
  */
 public class DependencyParserAPIUsage {
-
+    public static void getObjAttr(Object obj)  
+    {  
+    // 获取对象obj的所有属性域  
+    Field[] fields = obj.getClass().getDeclaredFields();  
+      
+    for (Field field : fields)  
+    {  
+        // 对于每个属性，获取属性名  
+        String varName = field.getName();  
+        try  
+        {  
+            boolean access = field.isAccessible();  
+            if(!access) field.setAccessible(true);  
+              
+            //从obj中获取field变量  
+            Object o = field.get(obj);  
+            System.out.println("变量： " + varName + " = " + o);  
+              
+            if(!access) field.setAccessible(false);  
+        }  
+        catch (Exception ex)  
+        {  
+            ex.printStackTrace();  
+        }  
+    }  
+    }  
     private static void update(String inputTrainPath, String inputUnlabeledPath, String outputTrainPath, String outputUnlabeledPath, String option, List<DependencyTree> predictedParses) {
         List<CoreMap> trainSents = new ArrayList<>();
         List<DependencyTree> trainTrees = new ArrayList<>();
@@ -94,7 +119,7 @@ public class DependencyParserAPIUsage {
 
         for (Integer iter=0; iter<8; iter++) {
             // writer.println(iter);
-            System.out.printf("\n\n\n\n\niteration %d", iter);
+            System.out.printf("\n\n\n\n\niteration %d\n", iter);
             // Configuring propreties for the parser. A full list of properties can be found
             // here https://nlp.stanford.edu/software/nndep.shtml
             
@@ -119,6 +144,7 @@ public class DependencyParserAPIUsage {
             // returns parse trees for all the sentences in test data using model, this function does not come with default parser and has been written for you
             predictedParses = model.testCoNLLProb(outputUnlabeledPath);
 
+            getObjAttr(predictedParses.get(0));
             // By default NN parser does not give you any probability 
             // https://cs.stanford.edu/~danqi/papers/emnlp2014.pdf explains that the parsing is performed by picking the transition with the highest output in the final layer 
             // To get a certainty measure from the final layer output layer, we take use a softmax function.
