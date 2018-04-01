@@ -7,6 +7,7 @@ import edu.stanford.nlp.util.ScoredComparator;
 import edu.stanford.nlp.util.CoreMap;
 import java.util.Properties;
 import java.util.List;
+import java.util.ArrayList;
 
 
 /**
@@ -52,8 +53,8 @@ public class DependencyParserAPIUsage {
         // Test model on test data, write annotations to testAnnotationsPath
         System.out.println(model.testCoNLL(testPath, testAnnotationsPath));
 
-        List<CoreMap> trainSents = new List<>();
-        List<DependencyTree> trainTrees = new List<>();
+        List<CoreMap> trainSents = new ArrayList<>();
+        List<DependencyTree> trainTrees = new ArrayList<>();
         Util.loadConllFile(unlabeledPath, trainSents, trainTrees);
         Util.writeConllFile(outputPath, trainSents, trainTrees);
 
