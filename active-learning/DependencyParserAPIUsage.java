@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.io.PrintWriter;
+import java.io.IOException;
 /**
  * Created by abhisheksinha on 3/20/17.
  */
@@ -57,7 +58,7 @@ public class DependencyParserAPIUsage {
         Util.writeConllFile(outputTrainPath, trainSents, trainTrees);
         Util.writeConllFile(outputUnlabeledPath, unlabeledSents, unlabeledTrees);
     }
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOExcepion {
         try {
             PrintWriter writer = new PrintWriter("logFile.txt", "UTF-8");
         } catch (IOExcepion e) {
