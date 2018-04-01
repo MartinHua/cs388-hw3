@@ -20,21 +20,21 @@ public class DependencyParserAPIUsage {
         List<DependencyTree> unlabeledTrees = new ArrayList<>();
         Util.loadConllFile(inputTrainPath, trainSents, trainTrees);
         Util.loadConllFile(inputUnlabeledPath, unlabeledSents, unlabeledTrees);
-        int wordCnt = 0;
-        List<int> addList = new ArrayList<>();
-        if (option == "generate") {
+        Integer wordCnt = 0;
+        List<Integer> addList = new ArrayList<>();
+        if (option.equals("generate")) {
             trainSents = trainSents.subList(0, 50);
             trainTrees = trainTrees.subList(0, 50);
         } else{
-            List<ScoredObject<int>> unlabeled = new ArrayList<>();
-            for (int i=0; i<unlabeledSents.size(); i++) {
-                if (options == "random") {
-                    unlabeled.add(ScoredObject(i, (int)(Math.random()*unlabeledSents.size())));
-                } else if (options == "length") {
+            List<ScoredObject<Integer>> unlabeled = new ArrayList<>();
+            for (Integer i=0; i<unlabeledSents.size(); i++) {
+                if (options.equals("random")) {
+                    unlabeled.add(ScoredObject(i, (Integer)(Math.random()*unlabeledSents.size())));
+                } else if (options.equals("length")) {
                     unlabeled.add(ScoredObject(i, predictedParses.get(i).n));
-                } else if (options == "raw") {
+                } else if (options.equals("raw")) {
                     unlabeled.add(ScoredObject(i, predictedParses.get(i).RawScore));
-                } else if (options == "margin") {
+                } else if (options.equals("margin")) {
                     unlabeled.add(ScoredObject(i, predictedParses.get(i).MarginScore));
                 }
             }
@@ -45,8 +45,8 @@ public class DependencyParserAPIUsage {
                 unlabeled.remove(0);
             }
             Collections.sort(addList ,Collections.reverseOrder());
-            for (i=0; i<addList.size(); i++) {
-                int index = addList.get(i);
+            for (Integer i=0; i<addList.size(); i++) {
+                Integer index = addList.get(i);
                 trainSents.add(unlabeledSents.get(index));
                 trainTrees.add(unlabeledTrees.get(index));
                 unlabeledSents.remove(index);
@@ -88,7 +88,7 @@ public class DependencyParserAPIUsage {
         prop.setProperty("maxIter", "1");
         DependencyParser p = new DependencyParser(prop);
 
-        for (int iter=0; iter<20; iter++) {
+        for (Integer iter=0; iter<20; iter++) {
             // Configuring propreties for the parser. A full list of properties can be found
             // here https://nlp.stanford.edu/software/nndep.shtml
             
