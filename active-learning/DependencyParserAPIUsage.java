@@ -94,7 +94,7 @@ public class DependencyParserAPIUsage {
 
         for (Integer iter=0; iter<8; iter++) {
             // writer.println(iter);
-            System.out.printf("iteration %d", iter);
+            System.out.printf("\n\n\n\n\niteration %d", iter);
             // Configuring propreties for the parser. A full list of properties can be found
             // here https://nlp.stanford.edu/software/nndep.shtml
             
@@ -102,11 +102,13 @@ public class DependencyParserAPIUsage {
             // Argument 2 - Dev Path (can be null)
             // Argument 3 - Path where model is saved
             // Argument 4 - Path to embedding vectors (can be null)
-            if (iter != 0){
-                p.train(outputTrainPath, null, modelPath, embeddingPath, modelPath);
-            } else {
-                p.train(outputTrainPath, null, modelPath, embeddingPath);
-            }
+            // if (iter != 0){
+            //     p.train(outputTrainPath, null, modelPath, embeddingPath, modelPath);
+            // } else {
+            //     p.train(outputTrainPath, null, modelPath, embeddingPath);
+            // }
+
+            p.train(outputTrainPath, null, modelPath, embeddingPath);
 
             // Load a saved path
             DependencyParser model = DependencyParser.loadFromModelFile(modelPath);
