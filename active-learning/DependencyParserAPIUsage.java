@@ -7,6 +7,7 @@ import edu.stanford.nlp.util.CoreMap;
 import java.util.Properties;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Created by abhisheksinha on 3/20/17.
@@ -28,20 +29,20 @@ public class DependencyParserAPIUsage {
         } else{
             List<ScoredObject<Integer>> unlabeled = new ArrayList<>();
             for (Integer i=0; i<unlabeledSents.size(); i++) {
-                if (options.equals("random")) {
-                    unlabeled.add(ScoredObject(i, (Integer)(Math.random()*unlabeledSents.size())));
-                } else if (options.equals("length")) {
+                if (option.equals("random")) {
+                    unlabeled.add(new ScoredObject(i, (Math.random()*unlabeledSents.size())));
+                } else if (option.equals("length")) {
                     unlabeled.add(ScoredObject(i, predictedParses.get(i).n));
-                } else if (options.equals("raw")) {
+                } else if (option.equals("raw")) {
                     unlabeled.add(ScoredObject(i, predictedParses.get(i).RawScore));
-                } else if (options.equals("margin")) {
+                } else if (option.equals("margin")) {
                     unlabeled.add(ScoredObject(i, predictedParses.get(i).MarginScore));
                 }
             }
             Collections.sort(unlabeled, ScoredComparator.DESCENDING_COMPARATOR);
             while (wordCnt < 1500) {
-                addList.add(unlabeled.get(0));
-                wordCnt += predictedParses.get(unlabeled.get(0)).n;
+                addList.add(unlabeled.get(0).object());
+                wordCnt += predictedParses.get(unlabeled.get(0).object()).n;
                 unlabeled.remove(0);
             }
             Collections.sort(addList ,Collections.reverseOrder());
