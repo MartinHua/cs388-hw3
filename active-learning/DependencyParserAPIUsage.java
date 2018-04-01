@@ -42,7 +42,7 @@ public class DependencyParserAPIUsage {
             Collections.sort(unlabeled, ScoredComparator.DESCENDING_COMPARATOR);
             while (wordCnt < 1500) {
                 addList.add(unlabeled.get(0).object());
-                wordCnt += trainSents.get(unlabeled.get(0).object()).length();
+                wordCnt += trainSents.get(unlabeled.get(0).object()).size();
                 unlabeled.remove(0);
             }
             Collections.sort(addList ,Collections.reverseOrder());
