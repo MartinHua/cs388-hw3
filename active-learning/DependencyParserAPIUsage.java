@@ -93,7 +93,8 @@ public class DependencyParserAPIUsage {
         DependencyParser p = new DependencyParser(prop);
 
         for (Integer iter=0; iter<8; iter++) {
-            writer.println(iter);
+            // writer.println(iter);
+            System.out.printf("iteration %d", iter);
             // Configuring propreties for the parser. A full list of properties can be found
             // here https://nlp.stanford.edu/software/nndep.shtml
             
@@ -112,7 +113,7 @@ public class DependencyParserAPIUsage {
             DependencyParser model = DependencyParser.loadFromModelFile(modelPath);
 
             // Test model on test data, write annotations to testAnnotationsPath
-            writer.println(model.testCoNLL(testPath, testAnnotationsPath));
+            System.out.printf(model.testCoNLL(testPath, testAnnotationsPath));
 
             // returns parse trees for all the sentences in test data using model, this function does not come with default parser and has been written for you
             predictedParses = model.testCoNLLProb(outputUnlabeledPath);
