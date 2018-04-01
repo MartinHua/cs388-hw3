@@ -1,3 +1,5 @@
+package edu.stanford.nlp.parser.nndep;
+
 import edu.stanford.nlp.parser.nndep.DependencyParser;
 import edu.stanford.nlp.parser.nndep.DependencyTree;
 import edu.stanford.nlp.util.ScoredObject;
@@ -23,6 +25,8 @@ public class DependencyParserAPIUsage {
         // Test Data Path
         String testPath = "./test.conllx";
         // String testPath = args[3];
+        // Output Data Path
+        String outputPath = "./output.conllx";
         // Path to embedding vectors file
         String embeddingPath = "/projects/nlp/penn-dependencybank/en-cw.txt";
         // Path where model is to be saved
@@ -33,7 +37,7 @@ public class DependencyParserAPIUsage {
         // Configuring propreties for the parser. A full list of properties can be found
         // here https://nlp.stanford.edu/software/nndep.shtml
         Properties prop = new Properties();
-        prop.setProperty("maxIter", "20");
+        prop.setProperty("maxIter", "1");
         DependencyParser p = new DependencyParser(prop);
 
         // Argument 1 - Training Path
@@ -48,8 +52,13 @@ public class DependencyParserAPIUsage {
         // Test model on test data, write annotations to testAnnotationsPath
         System.out.println(model.testCoNLL(testPath, testAnnotationsPath));
 
+        List<CoreMap> trainSents = new ArrayList<>();
+        List<DependencyTree> trainTrees = new ArrayList<>();
+        Util.loadConllFile(unlabeledPath, trainSents, trainTrees);
+        Util.writeConllFile(outputPath, trainSents, trainTrees);
+
         // returns parse trees for all the sentences in test data using model, this function does not come with default parser and has been written for you
-        List<DependencyTree> predictedParses = model.testCoNLLProb(testPath);
+        List<DependencyTree> predictedParses = model.testCoNLLProb(unlabeledPath);
 
         // By default NN parser does not give you any probability 
         // https://cs.stanford.edu/~danqi/papers/emnlp2014.pdf explains that the parsing is performed by picking the transition with the highest output in the final layer 
