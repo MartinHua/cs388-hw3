@@ -58,8 +58,8 @@ public class DependencyParserAPIUsage {
         Util.writeConllFile(outputTrainPath, trainSents, trainTrees);
         Util.writeConllFile(outputUnlabeledPath, unlabeledSents, unlabeledTrees);
     }
-    public static void main(String[] args) throws IOExcepion {
-        PrintWriter writer = new PrintWriter("logFile.txt", "UTF-8");        
+    public static void main(String[] args){
+        // PrintWriter writer = new PrintWriter("logFile.txt", "UTF-8");
 
         //  Training type
         String type = args[0];
@@ -113,7 +113,7 @@ public class DependencyParserAPIUsage {
             DependencyParser model = DependencyParser.loadFromModelFile(modelPath);
 
             // Test model on test data, write annotations to testAnnotationsPath
-            System.out.printf(model.testCoNLL(testPath, testAnnotationsPath));
+            System.out.println(model.testCoNLL(testPath, testAnnotationsPath));
 
             // returns parse trees for all the sentences in test data using model, this function does not come with default parser and has been written for you
             predictedParses = model.testCoNLLProb(outputUnlabeledPath);
@@ -134,6 +134,6 @@ public class DependencyParserAPIUsage {
             // https://nlp.stanford.edu/nlp/javadoc/javanlp-3.6.0/edu/stanford/nlp/util/ScoredObject.html
             // https://nlp.stanford.edu/nlp/javadoc/javanlp/edu/stanford/nlp/util/ScoredComparator.html
         }
-        writer.close();
+        // writer.close();
     }
 }
