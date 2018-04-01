@@ -89,7 +89,7 @@ public class DependencyParserAPIUsage {
 
         // new DependencyParser
         Properties prop = new Properties();
-        prop.setProperty("maxIter", "2");
+        prop.setProperty("maxIter", "1");
         DependencyParser p = new DependencyParser(prop);
 
         for (Integer iter=0; iter<8; iter++) {
@@ -102,12 +102,11 @@ public class DependencyParserAPIUsage {
             // Argument 2 - Dev Path (can be null)
             // Argument 3 - Path where model is saved
             // Argument 4 - Path to embedding vectors (can be null)
-            // if (iter != 0){
-            //     p.train(outputTrainPath, null, modelPath, embeddingPath, modelPath);
-            // } else {
-            //     p.train(outputTrainPath, null, modelPath, embeddingPath);
-            // }
-            p.train(outputTrainPath, null, modelPath, embeddingPath, "output_model");
+            if (iter != 0){
+                p.train(outputTrainPath, null, modelPath, embeddingPath, modelPath);
+            } else {
+                p.train(outputTrainPath, null, modelPath, embeddingPath);
+            }
 
             // Load a saved path
             DependencyParser model = DependencyParser.loadFromModelFile(modelPath);
