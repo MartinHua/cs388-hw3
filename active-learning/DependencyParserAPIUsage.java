@@ -31,11 +31,11 @@ public class DependencyParserAPIUsage {
                 if (options == "random") {
                     unlabeled.add(ScoredObject(i, (int)(Math.random()*unlabeledSents.size())));
                 } else if (options == "length") {
-                    unlabeled.add(ScoredObject(i, predictedParses.get(i).n);
+                    unlabeled.add(ScoredObject(i, predictedParses.get(i).n));
                 } else if (options == "raw") {
-                    unlabeled.add(ScoredObject(i, predictedParses.get(i).RawScore);
+                    unlabeled.add(ScoredObject(i, predictedParses.get(i).RawScore));
                 } else if (options == "margin") {
-                    unlabeled.add(ScoredObject(i, predictedParses.get(i).MarginScore);
+                    unlabeled.add(ScoredObject(i, predictedParses.get(i).MarginScore));
                 }
             }
             Collections.sort(unlabeled, ScoredComparator.DESCENDING_COMPARATOR)
@@ -58,7 +58,7 @@ public class DependencyParserAPIUsage {
     }
     public static void main(String[] args) {
         //  Training type
-        String type = args[0]
+        String type = args[0];
         //  Training Data path
         String trainPath = "./train.conllx";
         // String trainPath = args[1];
@@ -81,7 +81,7 @@ public class DependencyParserAPIUsage {
         List<DependencyTree> predictedParses;
 
         // generate sets
-        update(trainPath, unlabeledPath, outputTrainPath, outputUnlabeledPath, "generate", predictedParses)
+        update(trainPath, unlabeledPath, outputTrainPath, outputUnlabeledPath, "generate", predictedParses);
 
         // new DependencyParser
         Properties prop = new Properties();
@@ -114,7 +114,7 @@ public class DependencyParserAPIUsage {
             // For Margin Probability score we sum the log of margin between probabilities assigned to two top transitions at every step
             // Following line prints that probability metrics for 12-th sentence in test data
             // all probabilities in log space to reduce numerical errors. Adjust your code accordingly!
-            update(outputTrainPath, outputUnlabeledPath, outputTrainPath, outputUnlabeledPath, args[0], predictedParses)
+            update(outputTrainPath, outputUnlabeledPath, outputTrainPath, outputUnlabeledPath, args[0], predictedParses);
             
             // System.out.printf("Raw Probability: %f\n",predictedParses.get(12).RawScore);
             // System.out.printf("Margin Probability: %f\n",predictedParses.get(12).MarginScore);
