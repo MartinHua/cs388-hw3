@@ -1,7 +1,6 @@
-package edu.stanford.nlp.parser.nndep;
-
 import edu.stanford.nlp.parser.nndep.DependencyParser;
 import edu.stanford.nlp.parser.nndep.DependencyTree;
+import edu.stanford.nlp.parser.nndep.Util;
 import edu.stanford.nlp.util.ScoredObject;
 import edu.stanford.nlp.util.ScoredComparator;
 import edu.stanford.nlp.util.CoreMap;
