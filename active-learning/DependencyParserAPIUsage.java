@@ -14,7 +14,7 @@ import java.util.Collections;
  */
 public class DependencyParserAPIUsage {
 
-    private void update(String inputTrainPath, String inputUnlabeledPath, String outputTrainPath, String outputUnlabeledPath, String option, List<DependencyTree> predictedParses) {
+    private static void update(String inputTrainPath, String inputUnlabeledPath, String outputTrainPath, String outputUnlabeledPath, String option, List<DependencyTree> predictedParses) {
         List<CoreMap> trainSents = new ArrayList<>();
         List<DependencyTree> trainTrees = new ArrayList<>();
         List<CoreMap> unlabeledSents = new ArrayList<>();
@@ -32,11 +32,11 @@ public class DependencyParserAPIUsage {
                 if (option.equals("random")) {
                     unlabeled.add(new ScoredObject(i, (Math.random()*unlabeledSents.size())));
                 } else if (option.equals("length")) {
-                    unlabeled.add(ScoredObject(i, predictedParses.get(i).n));
+                    unlabeled.add(new ScoredObject(i, predictedParses.get(i).size()));
                 } else if (option.equals("raw")) {
-                    unlabeled.add(ScoredObject(i, predictedParses.get(i).RawScore));
+                    unlabeled.add(new ScoredObject(i, predictedParses.get(i).RawScore));
                 } else if (option.equals("margin")) {
-                    unlabeled.add(ScoredObject(i, predictedParses.get(i).MarginScore));
+                    unlabeled.add(new ScoredObject(i, predictedParses.get(i).MarginScore));
                 }
             }
             Collections.sort(unlabeled, ScoredComparator.DESCENDING_COMPARATOR);
