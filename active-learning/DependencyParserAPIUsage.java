@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 public class DependencyParserAPIUsage {
 
-    private void update(inputTrainPath, inputUnlabeledPath, outputTrainPath, outputUnlabeledPath, option, predictedParses) {
+    private void update(String inputTrainPath, String inputUnlabeledPath, String outputTrainPath, String outputUnlabeledPath, String option, List<DependencyTree> predictedParses) {
         List<CoreMap> trainSents = new ArrayList<>();
         List<DependencyTree> trainTrees = new ArrayList<>();
         List<CoreMap> unlabeledSents = new ArrayList<>();
@@ -38,7 +38,7 @@ public class DependencyParserAPIUsage {
                     unlabeled.add(ScoredObject(i, predictedParses.get(i).MarginScore));
                 }
             }
-            Collections.sort(unlabeled, ScoredComparator.DESCENDING_COMPARATOR)
+            Collections.sort(unlabeled, ScoredComparator.DESCENDING_COMPARATOR);
             while (wordCnt < 1500) {
                 addList.add(unlabeled.get(0));
                 wordCnt += predictedParses.get(unlabeled.get(0)).n;
