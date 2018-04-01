@@ -92,7 +92,7 @@ public class DependencyParserAPIUsage {
         DependencyParser p = new DependencyParser(prop);
 
         for (Integer iter=0; iter<8; iter++) {
-            writer.println("Iteration %d", iter);
+            writer.println(iter);
             // Configuring propreties for the parser. A full list of properties can be found
             // here https://nlp.stanford.edu/software/nndep.shtml
             
