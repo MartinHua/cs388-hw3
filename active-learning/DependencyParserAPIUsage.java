@@ -89,7 +89,7 @@ public class DependencyParserAPIUsage {
 
         // new DependencyParser
         Properties prop = new Properties();
-        prop.setProperty("maxIter", "1");
+        prop.setProperty("maxIter", "2");
         DependencyParser p = new DependencyParser(prop);
 
         for (Integer iter=0; iter<8; iter++) {
@@ -107,7 +107,7 @@ public class DependencyParserAPIUsage {
             // } else {
             //     p.train(outputTrainPath, null, modelPath, embeddingPath);
             // }
-            p.train(outputTrainPath, null, modelPath, embeddingPath, "outputs/model");
+            p.train(outputTrainPath, null, modelPath, embeddingPath, "output_model");
 
             // Load a saved path
             DependencyParser model = DependencyParser.loadFromModelFile(modelPath);
