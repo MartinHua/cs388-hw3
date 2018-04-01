@@ -8,7 +8,7 @@ import java.util.Properties;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
-
+import java.io.PrintWriter;
 /**
  * Created by abhisheksinha on 3/20/17.
  */
@@ -42,7 +42,7 @@ public class DependencyParserAPIUsage {
             Collections.sort(unlabeled, ScoredComparator.DESCENDING_COMPARATOR);
             while (wordCnt < 1500) {
                 addList.add(unlabeled.get(0).object());
-                wordCnt += trainSents.get(unlabeled.get(0).object()).size();
+                wordCnt += unlabeledSents.get(unlabeled.get(0).object()).size();
                 unlabeled.remove(0);
             }
             Collections.sort(addList ,Collections.reverseOrder());
@@ -58,6 +58,8 @@ public class DependencyParserAPIUsage {
         Util.writeConllFile(outputUnlabeledPath, unlabeledSents, unlabeledTrees);
     }
     public static void main(String[] args) {
+        PrintWriter writer = new PrintWriter("logFile.txt", "UTF-8");
+
         //  Training type
         String type = args[0];
         //  Training Data path
@@ -89,7 +91,8 @@ public class DependencyParserAPIUsage {
         prop.setProperty("maxIter", "1");
         DependencyParser p = new DependencyParser(prop);
 
-        for (Integer iter=0; iter<20; iter++) {
+        for (Integer iter=0; iter<8; iter++) {
+            writer.println("Iteration %d", iter);
             // Configuring propreties for the parser. A full list of properties can be found
             // here https://nlp.stanford.edu/software/nndep.shtml
             
@@ -97,13 +100,18 @@ public class DependencyParserAPIUsage {
             // Argument 2 - Dev Path (can be null)
             // Argument 3 - Path where model is saved
             // Argument 4 - Path to embedding vectors (can be null)
-            p.train(outputTrainPath, null, modelPath, embeddingPath);
+            if (iter != 0){
+                p.train(outputTrainPath, null, modelPath, embeddingPath, modelPath);
+            } else {
+                p.train(outputTrainPath, null, modelPath, embeddingPath);
+            }
+            
 
             // Load a saved path
             DependencyParser model = DependencyParser.loadFromModelFile(modelPath);
 
             // Test model on test data, write annotations to testAnnotationsPath
-            System.out.println(model.testCoNLL(testPath, testAnnotationsPath));
+            writer.println(model.testCoNLL(testPath, testAnnotationsPath));
 
             // returns parse trees for all the sentences in test data using model, this function does not come with default parser and has been written for you
             predictedParses = model.testCoNLLProb(outputUnlabeledPath);
@@ -124,9 +132,6 @@ public class DependencyParserAPIUsage {
             // https://nlp.stanford.edu/nlp/javadoc/javanlp-3.6.0/edu/stanford/nlp/util/ScoredObject.html
             // https://nlp.stanford.edu/nlp/javadoc/javanlp/edu/stanford/nlp/util/ScoredComparator.html
         }
-
-
-
-
+        writer.close();
     }
 }
