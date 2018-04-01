@@ -32,7 +32,7 @@ public class DependencyParserAPIUsage {
                 if (option.equals("random")) {
                     unlabeled.add(new ScoredObject(i, (Math.random()*unlabeledSents.size())));
                 } else if (option.equals("length")) {
-                    unlabeled.add(new ScoredObject(i, predictedParses.get(i).size()));
+                    unlabeled.add(new ScoredObject(i, trainSents.get(i).size()));
                 } else if (option.equals("raw")) {
                     unlabeled.add(new ScoredObject(i, predictedParses.get(i).RawScore));
                 } else if (option.equals("margin")) {
@@ -42,7 +42,7 @@ public class DependencyParserAPIUsage {
             Collections.sort(unlabeled, ScoredComparator.DESCENDING_COMPARATOR);
             while (wordCnt < 1500) {
                 addList.add(unlabeled.get(0).object());
-                wordCnt += predictedParses.get(unlabeled.get(0).object()).n;
+                wordCnt += trainSents.get(unlabeled.get(0).object()).length();
                 unlabeled.remove(0);
             }
             Collections.sort(addList ,Collections.reverseOrder());
