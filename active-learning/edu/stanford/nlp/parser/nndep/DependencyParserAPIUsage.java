@@ -14,14 +14,14 @@ import java.lang.reflect.Field;
  * Created by abhisheksinha on 3/20/17.
  */
 public class DependencyParserAPIUsage {
-    private static void update(String inputTrainPath, String inputUnlabeledPath, String outputTrainPath, String outputUnlabeledPath, String option, List<DependencyTree> predictedParses) {
+    private static Integer update(String inputTrainPath, String inputUnlabeledPath, String outputTrainPath, String outputUnlabeledPath, String option, List<DependencyTree> predictedParses) {
         List<CoreMap> trainSents = new ArrayList<>();
         List<DependencyTree> trainTrees = new ArrayList<>();
         List<CoreMap> unlabeledSents = new ArrayList<>();
         List<DependencyTree> unlabeledTrees = new ArrayList<>();
         Util.loadConllFile(inputTrainPath, trainSents, trainTrees);
         Util.loadConllFile(inputUnlabeledPath, unlabeledSents, unlabeledTrees);
-        Integer wordCnt = 0;
+        Integer wordCnt = 0, trainWords = 0;
         List<Integer> addList = new ArrayList<>();
         if (option.equals("generate")) {
             trainSents = trainSents.subList(0, 50);
@@ -54,8 +54,12 @@ public class DependencyParserAPIUsage {
                 unlabeledTrees.remove(index);
             }
         }
+        for (Integer i=0; i< trainTrees.size(); i++) {
+            trainWords += trainTrees.get(i).n;
+        }
         Util.writeConllFile(outputTrainPath, trainSents, trainTrees);
         Util.writeConllFile(outputUnlabeledPath, unlabeledSents, unlabeledTrees);
+        return trainWords;
     }
     public static void main(String[] args){
         // PrintWriter writer = new PrintWriter("logFile.txt", "UTF-8");
@@ -82,9 +86,9 @@ public class DependencyParserAPIUsage {
         String testAnnotationsPath = "outputs/test_annotation.conllx";
 
         List<DependencyTree> predictedParses = new ArrayList<>();
-
+        Integer trainWords = 0;
         // generate sets
-        update(trainPath, unlabeledPath, outputTrainPath, outputUnlabeledPath, "generate", predictedParses);
+        trainWords = update(trainPath, unlabeledPath, outputTrainPath, outputUnlabeledPath, "generate", predictedParses);
 
         // new DependencyParser
         Properties prop = new Properties();
@@ -93,7 +97,8 @@ public class DependencyParserAPIUsage {
 
         for (Integer iter=0; iter<20; iter++) {
             // writer.println(iter);
-            System.out.printf("\n\n\n\n\niteration %d\n", iter);
+            System.out.printf("\n\niteration: %d\n", iter);
+            System.out.printf("trainWords: %d\n", trainWords);
             // Configuring propreties for the parser. A full list of properties can be found
             // here https://nlp.stanford.edu/software/nndep.shtml
             
@@ -108,7 +113,7 @@ public class DependencyParserAPIUsage {
             DependencyParser model = DependencyParser.loadFromModelFile(modelPath);
 
             // Test model on test data, write annotations to testAnnotationsPath
-            System.out.println(model.testCoNLL(testPath, testAnnotationsPath));
+            System.out.printf("LAS = %f\n", model.testCoNLL(testPath, testAnnotationsPath));
 
             // returns parse trees for all the sentences in test data using model, this function does not come with default parser and has been written for you
             predictedParses = model.testCoNLLProb(outputUnlabeledPath);
