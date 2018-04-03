@@ -88,7 +88,7 @@ public class DependencyParserAPIUsage {
 
         // new DependencyParser
         Properties prop = new Properties();
-        prop.setProperty("maxIter", "20");
+        prop.setProperty("maxIter", "50");
         DependencyParser p = new DependencyParser(prop);
 
         for (Integer iter=0; iter<20; iter++) {
