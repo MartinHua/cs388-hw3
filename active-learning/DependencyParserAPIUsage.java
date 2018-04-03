@@ -1,3 +1,5 @@
+package edu.stanford.nlp.parser.nndep
+
 import edu.stanford.nlp.parser.nndep.DependencyParser;
 import edu.stanford.nlp.parser.nndep.DependencyTree;
 import edu.stanford.nlp.parser.nndep.Util;
@@ -15,32 +17,6 @@ import java.lang.reflect.Field;
  * Created by abhisheksinha on 3/20/17.
  */
 public class DependencyParserAPIUsage {
-    public static void getObjAttr(Object obj)  
-    {  
-    // 获取对象obj的所有属性域  
-    Field[] fields = obj.getClass().getDeclaredFields();  
-      
-    for (Field field : fields)  
-    {  
-        // 对于每个属性，获取属性名  
-        String varName = field.getName();  
-        try  
-        {  
-            boolean access = field.isAccessible();  
-            if(!access) field.setAccessible(true);  
-              
-            //从obj中获取field变量  
-            Object o = field.get(obj);  
-            System.out.println("变量： " + varName + " = " + o);  
-              
-            if(!access) field.setAccessible(false);  
-        }  
-        catch (Exception ex)  
-        {  
-            ex.printStackTrace();  
-        }  
-    }  
-    }  
     private static void update(String inputTrainPath, String inputUnlabeledPath, String outputTrainPath, String outputUnlabeledPath, String option, List<DependencyTree> predictedParses) {
         List<CoreMap> trainSents = new ArrayList<>();
         List<DependencyTree> trainTrees = new ArrayList<>();
@@ -59,7 +35,7 @@ public class DependencyParserAPIUsage {
                 if (option.equals("random")) {
                     unlabeled.add(new ScoredObject(i, (Math.random()*unlabeledSents.size())));
                 } else if (option.equals("length")) {
-                    unlabeled.add(new ScoredObject(i, trainSents.get(i).size()));
+                    unlabeled.add(new ScoredObject(i, predictedParses.get(i).n));
                 } else if (option.equals("raw")) {
                     unlabeled.add(new ScoredObject(i, predictedParses.get(i).RawScore));
                 } else if (option.equals("margin")) {
@@ -69,7 +45,7 @@ public class DependencyParserAPIUsage {
             Collections.sort(unlabeled, ScoredComparator.DESCENDING_COMPARATOR);
             while (wordCnt < 1500) {
                 addList.add(unlabeled.get(0).object());
-                wordCnt += unlabeledSents.get(unlabeled.get(0).object()).size();
+                wordCnt += predictedParses.get(unlabeled.get(0).object()).n;
                 unlabeled.remove(0);
             }
             Collections.sort(addList ,Collections.reverseOrder());
@@ -128,11 +104,6 @@ public class DependencyParserAPIUsage {
             // Argument 2 - Dev Path (can be null)
             // Argument 3 - Path where model is saved
             // Argument 4 - Path to embedding vectors (can be null)
-            // if (iter != 0){
-            //     p.train(outputTrainPath, null, modelPath, embeddingPath, modelPath);
-            // } else {
-            //     p.train(outputTrainPath, null, modelPath, embeddingPath);
-            // }
 
             p.train(outputTrainPath, null, modelPath, embeddingPath);
 
@@ -145,7 +116,6 @@ public class DependencyParserAPIUsage {
             // returns parse trees for all the sentences in test data using model, this function does not come with default parser and has been written for you
             predictedParses = model.testCoNLLProb(outputUnlabeledPath);
 
-            getObjAttr(predictedParses.get(0));
             // By default NN parser does not give you any probability 
             // https://cs.stanford.edu/~danqi/papers/emnlp2014.pdf explains that the parsing is performed by picking the transition with the highest output in the final layer 
             // To get a certainty measure from the final layer output layer, we take use a softmax function.
