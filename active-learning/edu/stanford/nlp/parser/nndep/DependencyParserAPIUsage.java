@@ -1,8 +1,5 @@
 package edu.stanford.nlp.parser.nndep;
 
-import edu.stanford.nlp.parser.nndep.DependencyParser;
-import edu.stanford.nlp.parser.nndep.DependencyTree;
-import edu.stanford.nlp.parser.nndep.Util;
 import edu.stanford.nlp.util.ScoredObject;
 import edu.stanford.nlp.util.ScoredComparator;
 import edu.stanford.nlp.util.CoreMap;
@@ -91,10 +88,10 @@ public class DependencyParserAPIUsage {
 
         // new DependencyParser
         Properties prop = new Properties();
-        prop.setProperty("maxIter", "1");
+        prop.setProperty("maxIter", "20");
         DependencyParser p = new DependencyParser(prop);
 
-        for (Integer iter=0; iter<8; iter++) {
+        for (Integer iter=0; iter<20; iter++) {
             // writer.println(iter);
             System.out.printf("\n\n\n\n\niteration %d\n", iter);
             // Configuring propreties for the parser. A full list of properties can be found
