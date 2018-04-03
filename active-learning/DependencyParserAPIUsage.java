@@ -1,4 +1,4 @@
-package edu.stanford.nlp.parser.nndep
+package edu.stanford.nlp.parser.nndep;
 
 import edu.stanford.nlp.parser.nndep.DependencyParser;
 import edu.stanford.nlp.parser.nndep.DependencyTree;
