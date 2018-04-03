@@ -125,7 +125,7 @@ public class DependencyParserAPIUsage {
             // For Margin Probability score we sum the log of margin between probabilities assigned to two top transitions at every step
             // Following line prints that probability metrics for 12-th sentence in test data
             // all probabilities in log space to reduce numerical errors. Adjust your code accordingly!
-            update(outputTrainPath, outputUnlabeledPath, outputTrainPath, outputUnlabeledPath, args[0], predictedParses);
+            trainWords = update(outputTrainPath, outputUnlabeledPath, outputTrainPath, outputUnlabeledPath, args[0], predictedParses);
             
             // System.out.printf("Raw Probability: %f\n",predictedParses.get(12).RawScore);
             // System.out.printf("Margin Probability: %f\n",predictedParses.get(12).MarginScore);
