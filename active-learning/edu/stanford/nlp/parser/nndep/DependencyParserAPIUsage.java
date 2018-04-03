@@ -34,9 +34,9 @@ public class DependencyParserAPIUsage {
                 } else if (option.equals("length")) {
                     unlabeled.add(new ScoredObject(i, predictedParses.get(i).n));
                 } else if (option.equals("raw")) {
-                    unlabeled.add(new ScoredObject(i, predictedParses.get(i).RawScore / predictedParses.get(i).n));
+                    unlabeled.add(new ScoredObject(i, -predictedParses.get(i).RawScore / predictedParses.get(i).n));
                 } else if (option.equals("margin")) {
-                    unlabeled.add(new ScoredObject(i, predictedParses.get(i).MarginScore / predictedParses.get(i).n));
+                    unlabeled.add(new ScoredObject(i, -predictedParses.get(i).MarginScore / predictedParses.get(i).n));
                 }
             }
             Collections.sort(unlabeled, ScoredComparator.DESCENDING_COMPARATOR);
