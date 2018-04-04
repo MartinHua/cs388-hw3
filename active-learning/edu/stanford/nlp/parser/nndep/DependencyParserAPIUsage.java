@@ -67,23 +67,25 @@ public class DependencyParserAPIUsage {
         //  Training type
         String type = args[0];
         //  Training Data path
-        String trainPath = "./train.conllx";
-        // String trainPath = args[1];
+        // String trainPath = "./train.conllx";
+        String trainPath = args[1];
         //  unlabeled Data Path
-        String unlabeledPath = "./unlabeled.conllx";
-        // String unlabeledPath = args[2];
+        // String unlabeledPath = "./unlabeled.conllx";
+        String unlabeledPath = args[2];
         // Test Data Path
-        String testPath = "./test.conllx";
-        // String testPath = args[3];
+        // String testPath = "./test.conllx";
+        String testPath = args[3];
         // Output train and unlabeled data path
         String outputTrainPath = "./outputTrain.conllx";
         String outputUnlabeledPath = "./outputUnlabeled.conllx";
         // Path to embedding vectors file
         String embeddingPath = "/projects/nlp/penn-dependencybank/en-cw.txt";
         // Path where model is to be saved
-        String modelPath = "outputs/model1";
+        String modelPath = "./outputModel";
         // Path where test data annotations are stored
-        String testAnnotationsPath = "outputs/test_annotation.conllx";
+        String testAnnotationsPath = "./testAnnotation.conllx";
+        Integer ITERATION = (int)(args[4]);
+        String MAXITER = args[5];
 
         List<DependencyTree> predictedParses = new ArrayList<>();
         Integer trainWords = 0;
@@ -92,10 +94,10 @@ public class DependencyParserAPIUsage {
 
         // new DependencyParser
         Properties prop = new Properties();
-        prop.setProperty("maxIter", "50");
+        prop.setProperty("maxIter", MAXITER);
         DependencyParser p = new DependencyParser(prop);
 
-        for (Integer iter=0; iter<20; iter++) {
+        for (Integer iter=0; iter<ITERATION; iter++) {
             // writer.println(iter);
             System.out.printf("\n\niteration: %d\n", iter);
             System.out.printf("trainWords: %d\n", trainWords);
