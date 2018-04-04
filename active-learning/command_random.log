@@ -1,0 +1,14 @@
+
+
+iteration: 0
+trainWords: 1179
+LAS = 43.541126
+
+
+iteration: 1
+trainWords: 2684
+LAS = 59.088635
+
+
+iteration: 2
+trainWords: 4204

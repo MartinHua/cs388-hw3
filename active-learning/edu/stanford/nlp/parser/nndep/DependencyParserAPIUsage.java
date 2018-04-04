@@ -76,14 +76,18 @@ public class DependencyParserAPIUsage {
         // String testPath = "./test.conllx";
         String testPath = args[3];
         // Output train and unlabeled data path
-        String outputTrainPath = "./outputTrain.conllx";
-        String outputUnlabeledPath = "./outputUnlabeled.conllx";
+        // String outputTrainPath = "./outputTrain.conllx";
+        // String outputUnlabeledPath = "./outputUnlabeled.conllx";
+	String outputTrainPath = args[6];
+	String outputUnlabeledPath = args[7];
         // Path to embedding vectors file
         String embeddingPath = "/projects/nlp/penn-dependencybank/en-cw.txt";
         // Path where model is to be saved
-        String modelPath = "./outputModel";
+        // String modelPath = "./outputModel";
+	String modelPath = args[8];
         // Path where test data annotations are stored
-        String testAnnotationsPath = "./testAnnotation.conllx";
+        // String testAnnotationsPath = "./testAnnotation.conllx";
+	String testAnnotationsPath = args[9];
         Integer ITERATION = Integer.parseInt(args[4]);
         String MAXITER = args[5];
 
