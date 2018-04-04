@@ -84,7 +84,7 @@ public class DependencyParserAPIUsage {
         String modelPath = "./outputModel";
         // Path where test data annotations are stored
         String testAnnotationsPath = "./testAnnotation.conllx";
-        Integer ITERATION = Integer.parseInt(args[4])
+        Integer ITERATION = Integer.parseInt(args[4]);
         String MAXITER = args[5];
 
         List<DependencyTree> predictedParses = new ArrayList<>();
