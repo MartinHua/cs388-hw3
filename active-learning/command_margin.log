@@ -1,0 +1,100 @@
+
+
+iteration: 0
+trainWords: 1179
+LAS = 24.118053
+
+
+iteration: 1
+trainWords: 2689
+LAS = 37.435983
+
+
+iteration: 2
+trainWords: 4219
+LAS = 45.768324
+
+
+iteration: 3
+trainWords: 5738
+LAS = 53.028751
+
+
+iteration: 4
+trainWords: 7244
+LAS = 53.374145
+
+
+iteration: 5
+trainWords: 8790
+LAS = 54.798599
+
+
+iteration: 6
+trainWords: 10304
+LAS = 53.174055
+
+
+iteration: 7
+trainWords: 11825
+LAS = 57.013887
+
+
+iteration: 8
+trainWords: 13347
+LAS = 54.800981
+
+
+iteration: 9
+trainWords: 14860
+LAS = 54.870060
+
+
+iteration: 10
+trainWords: 16362
+LAS = 54.755723
+
+
+iteration: 11
+trainWords: 17884
+LAS = 57.723732
+
+
+iteration: 12
+trainWords: 19388
+LAS = 55.060623
+
+
+iteration: 13
+trainWords: 20911
+LAS = 55.968176
+
+
+iteration: 14
+trainWords: 22417
+LAS = 54.912937
+
+
+iteration: 15
+trainWords: 23918
+LAS = 54.269789
+
+
+iteration: 16
+trainWords: 25427
+LAS = 57.399776
+
+
+iteration: 17
+trainWords: 26943
+LAS = 57.664181
+
+
+iteration: 18
+trainWords: 28453
+LAS = 54.365070
+
+
+iteration: 19
+trainWords: 29958
+LAS = 55.170196

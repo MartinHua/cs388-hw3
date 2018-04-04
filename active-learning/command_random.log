@@ -1,140 +1,100 @@
 
 
+iteration: 0
+trainWords: 1179
+LAS = 26.931231
 
 
+iteration: 1
+trainWords: 2697
+LAS = 37.100117
 
-iteration 0
-24.325290012148354
 
+iteration: 2
+trainWords: 4220
+LAS = 48.555299
 
 
+iteration: 3
+trainWords: 5738
+LAS = 51.847264
 
 
-iteration 1
-37.32402753626641
+iteration: 4
+trainWords: 7255
+LAS = 54.967723
 
 
+iteration: 5
+trainWords: 8766
+LAS = 56.089660
 
 
+iteration: 6
+trainWords: 10278
+LAS = 54.922465
 
-iteration 2
-47.64298134870537
 
+iteration: 7
+trainWords: 11801
+LAS = 52.685739
 
 
+iteration: 8
+trainWords: 13320
+LAS = 57.249708
 
 
-iteration 3
-52.52376074891022
+iteration: 9
+trainWords: 14825
+LAS = 55.720445
 
 
+iteration: 10
+trainWords: 16351
+LAS = 58.626522
 
 
+iteration: 11
+trainWords: 17878
+LAS = 58.335914
 
-iteration 4
-54.862914175460325
 
+iteration: 12
+trainWords: 19397
+LAS = 56.854291
 
 
+iteration: 13
+trainWords: 20921
+LAS = 59.057669
 
 
-iteration 5
-54.605654939139136
+iteration: 14
+trainWords: 22429
+LAS = 56.001524
 
 
+iteration: 15
+trainWords: 23941
+LAS = 59.562659
 
 
+iteration: 16
+trainWords: 25449
+LAS = 58.971916
 
-iteration 6
-55.525118505990804
 
+iteration: 17
+trainWords: 26971
+LAS = 55.174960
 
 
+iteration: 18
+trainWords: 28478
+LAS = 60.046211
 
 
-iteration 7
-56.35644696410281
-
-
-
-
-
-iteration 8
-56.3302446344775
-
-
-
-
-
-iteration 9
-57.34498939996665
-
-
-
-
-
-iteration 10
-58.926657297348804
-
-
-
-
-
-iteration 11
-56.1301541173388
-
-
-
-
-
-iteration 12
-57.233033991567616
-
-
-
-
-
-iteration 13
-57.98099140087182
-
-
-
-
-
-iteration 14
-58.15964364831709
-
-
-
-
-
-iteration 15
-58.81231985898383
-
-
-
-
-
-iteration 16
-61.029989757271146
-
-
-
-
-
-iteration 17
-59.80086229484767
-
-
-
-
-
-iteration 18
-59.23870322288654
-
-
-
-
-
-iteration 19
-59.267287582477785
+iteration: 19
+trainWords: 29981
+LAS = 57.776137
