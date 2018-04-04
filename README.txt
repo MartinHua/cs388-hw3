@@ -16,8 +16,8 @@ EXECUTING CODE FOR TESTING
   2. train set path
   3. unlabeled set path
   4. test set path
-  5. total train iteration: 20
-  6. interation for each model: 50
+  5. total train iterations: 20
+  6. iterations for each model: 50
   
   Run in command line: 
 
