@@ -12,3 +12,89 @@ LAS = 59.088635
 
 iteration: 2
 trainWords: 4204
+LAS = 65.205688
+
+
+iteration: 3
+trainWords: 5720
+LAS = 69.948310
+
+
+iteration: 4
+trainWords: 7223
+LAS = 73.373669
+
+
+iteration: 5
+trainWords: 8743
+LAS = 73.557085
+
+
+iteration: 6
+trainWords: 10270
+LAS = 75.862890
+
+
+iteration: 7
+trainWords: 11781
+LAS = 76.625140
+
+
+iteration: 8
+trainWords: 13294
+LAS = 77.658941
+
+
+iteration: 9
+trainWords: 14801
+LAS = 77.499345
+
+
+iteration: 10
+trainWords: 16302
+LAS = 78.626045
+
+
+iteration: 11
+trainWords: 17804
+LAS = 79.219171
+
+
+iteration: 12
+trainWords: 19333
+LAS = 79.574093
+
+
+iteration: 13
+trainWords: 20838
+LAS = 80.014769
+
+
+iteration: 14
+trainWords: 22359
+LAS = 80.498321
+
+
+iteration: 15
+trainWords: 23864
+LAS = 80.124342
+
+
+iteration: 16
+trainWords: 25369
+LAS = 79.988566
+
+
+iteration: 17
+trainWords: 26879
+LAS = 80.169601
+
+
+iteration: 18
+trainWords: 28388
+LAS = 80.977109
+
+
+iteration: 19
+trainWords: 29910
+LAS = 81.429694
