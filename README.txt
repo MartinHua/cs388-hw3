@@ -25,4 +25,4 @@ EXECUTING CODE FOR TESTING
   
   Run in command line: 
 
-  java edu/stanford/nlp/parser/nndep/DependencyParserAPIUsage random ./train.conllx ./unlabeled.conllx ./test.conllx 20 500 ./outputTrain.conllx ./outputUnlabeled.conllx ./outputModel ./testAnnotation.conllx
+  java edu/stanford/nlp/parser/nndep/DependencyParserAPIUsage random ./train.conllx ./unlabeled.conllx ./test.conllx 20 500 ./outputTrain.conllx ./outputUnlabeled.conllx ./outputModel ./testAnnotation.conllx > random.log 2>&1
