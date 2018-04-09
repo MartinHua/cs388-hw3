@@ -41,24 +41,22 @@ public class DependencyParserAPIUsage {
                 }
             }
             Collections.sort(unlabeled, ScoredComparator.DESCENDING_COMPARATOR);
-            System.out.println(unlabeled.size());
             while (wordCnt < 1500) {
                 addList.add(unlabeled.get(0).object());
                 wordCnt += unlabeledTrees.get(unlabeled.get(0).object()).n;
                 unlabeled.remove(0);
             }
-            System.out.println(unlabeled.size());
-            Collections.sort(addList, Collections.reverseOrder());
+            Collections.sort(addList, Collections.DESCENDING_COMPARATOR);
+
             Iterator<CoreMap> sentsIterator = unlabeledSents.iterator();
             Iterator<DependencyTree> treesIterator = unlabeledTrees.iterator();
-
             for (Integer i=0; i<addList.size(); i++) {
                 Integer index = addList.get(i);
                 System.out.println(unlabeledTrees.get(index).n);
                 trainSents.add(unlabeledSents.get(index));
                 trainTrees.add(unlabeledTrees.get(index));
-                unlabeledSents.remove(index);
-                unlabeledTrees.remove(index);
+                unlabeledSents.remove(unlabeledSents.get(index));
+                unlabeledTrees.remove(unlabeledTrees.get(index));
                 System.out.println(unlabeledTrees.get(index).n);
             }
         }
