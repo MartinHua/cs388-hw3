@@ -52,12 +52,10 @@ public class DependencyParserAPIUsage {
             Iterator<DependencyTree> treesIterator = unlabeledTrees.iterator();
             for (Integer i=0; i<addList.size(); i++) {
                 Integer index = addList.get(i);
-                System.out.println(unlabeledTrees.get(index).n);
                 trainSents.add(unlabeledSents.get(index));
                 trainTrees.add(unlabeledTrees.get(index));
                 unlabeledSents.remove(unlabeledSents.get(index));
                 unlabeledTrees.remove(unlabeledTrees.get(index));
-                System.out.println(unlabeledTrees.get(index).n);
             }
         }
         for (Integer i=0; i<trainTrees.size(); i++) {
@@ -65,7 +63,6 @@ public class DependencyParserAPIUsage {
         }
         Util.writeConllFile(outputTrainPath, trainSents, trainTrees);
         Util.writeConllFile(outputUnlabeledPath, unlabeledSents, unlabeledTrees);
-        System.out.println(unlabeledTrees.size());
         return trainWords;
     }
     public static void main(String[] args){
