@@ -40,12 +40,17 @@ public class DependencyParserAPIUsage {
                 }
             }
             Collections.sort(unlabeled, ScoredComparator.DESCENDING_COMPARATOR);
+            System.out.println(unlabeled.size());
             while (wordCnt < 1500) {
                 addList.add(unlabeled.get(0).object());
                 wordCnt += unlabeledTrees.get(unlabeled.get(0).object()).n;
                 unlabeled.remove(0);
             }
+            System.out.println(unlabeled.size());
             Collections.sort(addList, Collections.reverseOrder());
+            Iterator<CoreMap> sentsIterator = unlabeledSents.iterator();
+            Iterator<DependencyTree> treesIterator = unlabeledTrees.iterator();
+
             for (Integer i=0; i<addList.size(); i++) {
                 Integer index = addList.get(i);
                 System.out.println(unlabeledTrees.get(index).n);
