@@ -48,12 +48,12 @@ public class DependencyParserAPIUsage {
             Collections.sort(addList, Collections.reverseOrder());
             for (Integer i=0; i<addList.size(); i++) {
                 Integer index = addList.get(i);
-                System.out.println(unlabeledSents.get(index).n)
+                System.out.println(unlabeledSents.get(index).n);
                 trainSents.add(unlabeledSents.get(index));
                 trainTrees.add(unlabeledTrees.get(index));
                 unlabeledSents.remove(index);
                 unlabeledTrees.remove(index);
-                System.out.println(unlabeledSents.get(index).n)
+                System.out.println(unlabeledSents.get(index).n);
             }
         }
         for (Integer i=0; i<trainTrees.size(); i++) {
@@ -61,7 +61,7 @@ public class DependencyParserAPIUsage {
         }
         Util.writeConllFile(outputTrainPath, trainSents, trainTrees);
         Util.writeConllFile(outputUnlabeledPath, unlabeledSents, unlabeledTrees);
-        System.out.println(unlabeledSents.size())
+        System.out.println(unlabeledSents.size());
         return trainWords;
     }
     public static void main(String[] args){
