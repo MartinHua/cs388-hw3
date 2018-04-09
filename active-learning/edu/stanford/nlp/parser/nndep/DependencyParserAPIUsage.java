@@ -46,7 +46,7 @@ public class DependencyParserAPIUsage {
                 wordCnt += unlabeledTrees.get(unlabeled.get(0).object()).n;
                 unlabeled.remove(0);
             }
-            Collections.sort(addList, Collections.DESCENDING_COMPARATOR);
+            Collections.sort(addList, Collectons.reverseOrder());
 
             Iterator<CoreMap> sentsIterator = unlabeledSents.iterator();
             Iterator<DependencyTree> treesIterator = unlabeledTrees.iterator();
