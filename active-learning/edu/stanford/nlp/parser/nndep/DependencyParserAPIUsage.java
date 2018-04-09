@@ -28,24 +28,24 @@ public class DependencyParserAPIUsage {
             trainTrees = trainTrees.subList(0, 50);
         } else{
             List<ScoredObject<Integer>> unlabeled = new ArrayList<>();
-            for (Integer i=0; i<unlabeledSents.size(); i++) {
+            for (Integer i=0; i<unlabeledTrees.size(); i++) {
                 if (option.equals("random")) {
-                    unlabeled.add(new ScoredObject(i, (Math.random()*unlabeledSents.size())));
+                    unlabeled.add(new ScoredObject(i, (Math.random()*unlabeledTrees.size())));
                 } else if (option.equals("length")) {
-                    unlabeled.add(new ScoredObject(i, predictedParses.get(i).n));
+                    unlabeled.add(new ScoredObject(i, unlabeledTrees.get(i).n));
                 } else if (option.equals("raw")) {
-                    unlabeled.add(new ScoredObject(i, -predictedParses.get(i).RawScore / predictedParses.get(i).n));
+                    unlabeled.add(new ScoredObject(i, -predictedParses.get(i).RawScore / unlabeledTrees.get(i).n));
                 } else if (option.equals("margin")) {
-                    unlabeled.add(new ScoredObject(i, -predictedParses.get(i).MarginScore / predictedParses.get(i).n));
+                    unlabeled.add(new ScoredObject(i, -predictedParses.get(i).MarginScore / unlabeledTrees.get(i).n));
                 }
             }
             Collections.sort(unlabeled, ScoredComparator.DESCENDING_COMPARATOR);
             while (wordCnt < 1500) {
                 addList.add(unlabeled.get(0).object());
-                wordCnt += predictedParses.get(unlabeled.get(0).object()).n;
+                wordCnt += unlabeledTrees.get(unlabeled.get(0).object()).n;
                 unlabeled.remove(0);
             }
-            Collections.sort(addList ,Collections.reverseOrder());
+            Collections.sort(addList, Collections.reverseOrder());
             for (Integer i=0; i<addList.size(); i++) {
                 Integer index = addList.get(i);
                 trainSents.add(unlabeledSents.get(index));
@@ -54,7 +54,7 @@ public class DependencyParserAPIUsage {
                 unlabeledTrees.remove(index);
             }
         }
-        for (Integer i=0; i< trainTrees.size(); i++) {
+        for (Integer i=0; i<trainTrees.size(); i++) {
             trainWords += trainTrees.get(i).n;
         }
         Util.writeConllFile(outputTrainPath, trainSents, trainTrees);
@@ -78,16 +78,16 @@ public class DependencyParserAPIUsage {
         // Output train and unlabeled data path
         // String outputTrainPath = "./outputTrain.conllx";
         // String outputUnlabeledPath = "./outputUnlabeled.conllx";
-	String outputTrainPath = args[6];
-	String outputUnlabeledPath = args[7];
+	    String outputTrainPath = args[6];
+	    String outputUnlabeledPath = args[7];
         // Path to embedding vectors file
         String embeddingPath = "/projects/nlp/penn-dependencybank/en-cw.txt";
         // Path where model is to be saved
         // String modelPath = "./outputModel";
-	String modelPath = args[8];
+	    String modelPath = args[8];
         // Path where test data annotations are stored
         // String testAnnotationsPath = "./testAnnotation.conllx";
-	String testAnnotationsPath = args[9];
+	    String testAnnotationsPath = args[9];
         Integer ITERATION = Integer.parseInt(args[4]);
         String MAXITER = args[5];
 
